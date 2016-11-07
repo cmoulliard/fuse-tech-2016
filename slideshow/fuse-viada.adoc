@@ -1032,11 +1032,12 @@ image::{revealjs_cover_image}[]
 [#future]
 == Future
 
-* What is the future about the *Inetgration Platform*
-** {icon-arrow-right} JBoss Fuse - 7
-** AMQ - 7
+* What is the future about the *Integration Platform*
+** JBoss Fuse {icon-arrow-right}  7
+** AMQ {icon-arrow-right}  7
 
-{icon-arrow-right} for Bare Metal / Hypervisor machines
+[.newline]
+* HW & OS : Bare Metal or "Hypervisor" machines
 
 // ************ future *************
 [#fuse7]
@@ -1047,7 +1048,10 @@ image::{revealjs_cover_image}[]
 ** Undertow - Web container
 ** Keycloak for SSO
 
-[.newline]
+// ************ future *************
+[#fuse7-con't]
+== Fuse 7 - con't
+
 * Jetliner of the *Integration* Stacks
 ** Apache Karaf 4.x, Apache Camel 2.18, Apache CXF 3.x
 ** A-MQ 7.0
@@ -1215,7 +1219,8 @@ image::fis-tool.png[]
 ** Design & Deploy a SpringBoot Apache Camel Project
 ** Exposing a REST endpoint and connected to a MySQL DB
 
-Microservice in Action : https://github.com/FuseByExample/microservice-in-action
+[.newline]
+* Microservice in Action : https://github.com/FuseByExample/microservice-in-action
 
 // *********************************
 [#questions]

@@ -1,4 +1,6 @@
-== Demo 1 - JBoss Fuse 6.3 with Camel CBR
+:toc:
+
+== Demo 1 - JBoss Fuse 6.3 with a Content Based Route
 
 * Open IntelliJ and move to the quickstarts folder `/Users/chmoulli/Fuse/Fuse-servers/jboss-fuse-6.3.0.redhat-187/quickstarts`
 
@@ -30,7 +32,7 @@ cp src/main/fabric8/data/order5.xml $DEST
 
 Verify within the console that you can see the detail about the message and where it fits
 
-== DEMO 2 - JBoss Fuse 6.3 - Fabric8 & Apache CXF Rest Endpoint
+== Demo 2 - JBoss Fuse 6.3 - Fabric8 & Apache CXF Rest Endpoint
 
 * Create Fabric Ensemble (wifi connection is required)
 
@@ -57,44 +59,40 @@ fabric:create
 
 * To get customer
 
-Remark : change the port number
+Remark : change the port number according to the container where the CXF endpoint is exposed
 
 ```
-    http GET http://localhost:8080/cxf/rest/customerservice/customers/123
-    http GET http://localhost:8080/cxf/rest/customerservice/customers/124
+http GET http://localhost:8182/cxf/crm/customerservice/customers/123
+http GET http://localhost:8182/cxf/crm/customerservice/customers/124
 ```
 
 * To Post
 ```
-    echo '{"Customer":{"name":"TUG"}}' | http POST http://localhost:8080/cxf/rest/customerservice/customers
-```
-* To Update
-```
-    echo '{"Customer":{"id":124,"name":"TUG2"}}' | http PUT http://localhost:8080/cxf/rest/customerservice/customers
+echo '{"name":"VIADA"}' | http -j POST http://localhost:8182/cxf/crm/customerservice/customers
 ```
 * To delete
 ```
-    http DELETE http://localhost:8080/cxf/rest/customerservice/customers/124
+http DELETE http://localhost:8182/cxf/crm/customerservice/customers/124
 ```
 
-* Issue some REST requests
+* Play with all the httpie requests
 
 ```
-    http GET http://localhost:8182/cxf/rest/customerservice/customers/123
-    http GET http://localhost:8182/cxf/rest/customerservice/customers/124
-    echo '{"Customer":{"name":"TUG"}}' | http POST http://localhost:8182/cxf/rest/customerservice/customers
-    echo '{"Customer":{"id":124,"name":"TUG2"}}' | http PUT http://localhost:8182/cxf/rest/customerservice/customers
-    http DELETE http://localhost:8182/cxf/rest/customerservice/customers/124
+http -j GET http://localhost:8182/cxf/crm/customerservice/customers/123
+http -j GET http://localhost:8182/cxf/crm/customerservice/customers/124
+echo '{"name":"VIADA"}' | http -j POST http://localhost:8182/cxf/crm/customerservice/customers
+echo '{"id":124,"name":"VIADA2"}' | http -j PUT http://localhost:8182/cxf/crm/customerservice/customers
+http DELETE http://localhost:8182/cxf/crm/customerservice/customers/124
 ```
 
 * Stop the container
 ```
-    fabric:container-stop cxf-rest
+fabric:container-stop cxf-rest
 ```
 
-== DEMO 3 - OpenShift with a SpringBoot Camel Service
+== Demo 3 - OpenShift with a SpringBoot Camel Service
 
-* Start Minishift & install the Fabric8 Web Console
+* Start MiniShift & install the Fabric8 Web Console
 ```
 minishift delete
 minishift start --memory 6000 --deploy-router
@@ -120,7 +118,7 @@ mvn clean compile fabric8:run
 - Show the pod created, service & the log
 - Access the jolokia Web Console to show the camel route
 
-== DEMO 3 - OpenShift with 2 Camel Microservices
+== Demo 4 - OpenShift with 2 Camel Microservices
 
 * Open the projects containing the MicroServices
 ```
@@ -136,8 +134,8 @@ docker pull openshift/mysql-56-centos7
 * Create the DB
 ```
 oc new-app -e \
-    MYSQL_USER=admin,MYSQL_PASSWORD=admin,MYSQL_DATABASE=sampledb \
-    openshift/mysql-56-centos7
+   MYSQL_USER=admin,MYSQL_PASSWORD=admin,MYSQL_DATABASE=sampledb \
+   openshift/mysql-56-centos7 --allow-missing-images
 ```
 
 * Change the name of service within the deployment cfg file as the service created is not longer mysql
@@ -147,9 +145,9 @@ env:
   value: mysql-56-centos7
 ```
 
-* Deploy the SpringBoot Camel REST & SQL demo
+* Deploy the SpringBoot Camel REST & SQL Demo
 ```
-mvn fabric8:deploy -Dmysql-service-username=admin -Dmysql-service-password=admin -Dmysql-service-name=mysql-56-centos7
+mvn fabric8:deploy -Dmysql-service-username=admin -Dmysql-service-password=admin
 ```
 
 * Check the pod, service & log
@@ -161,12 +159,13 @@ http $(minishift service spring-boot-camel-rest-s --url=true)/camel-rest-sql/boo
 * Use Swagger UI
 
 - To get the IP address of the Endpoint/Service
+```
 http $(minishift service spring-boot-camel-rest-s --url=true)/camel-rest-sql/api-doc
-
+```
 - Next, open your browser at this address to fetch the endpoint info using the Swagger UI
-
+```
 chrome http://$(minishift ip):8888/swagger-ui/?url=$(minishift service spring-boot-camel-rest-s --url=true)/camel-rest-sql/api-doc
-
+```
 
 
 
