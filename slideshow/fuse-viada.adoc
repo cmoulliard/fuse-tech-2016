@@ -24,16 +24,14 @@ image::{revealjs_cover_image}[]
 [#agenda]
 == Agenda
 
-* Past
-** Long story behind Fuse
-** From old days using JBI
-* Present
+* **Past**
+** Long story behind Fuse, from old days using JBI
+* **Present**
 ** A new revolution is born with Apache Camel, the Java Integration Framework
 ** How to "Fabric" your integration project & manage it
-** From centralized to distributed services
-* Future
-** Microservices, a new paradigm embraced by JBoss Fuse
-**  JBoss Fuse positioning with MicroServices & Cloud Native Platform
+* **Future**
+** Microservices & Cloud Native Platform, new paradigms embraced by Fuse Technology
+** JBoss Fuse roadmap
 
 // ************** who - charles ********
 [#who]
@@ -51,9 +49,9 @@ Twitter: @cmoulliard
 Email: cmoulliard@redhat.com |
 |===
 
-* Committer on Apache Camel, Karaf, Fabric8, Hawtio ... & PMC
-* Technology evangelist
-* Mountain Biker, Blogger
+* Obsidian Architect & Project Lead
+* Committer on Apache Camel, Apache Karaf, Fabric8, Hawtio ... & PMC
+* Technology evangelist, Mountain Biker, Blogger
 
 // ************** transition page ************
 [#transition1, data-background-color="#cc0000"]
@@ -129,10 +127,17 @@ image::{revealjs_cover_image}[]
 
 // ************** Technology ********
 [#technology]
-== Fuse *Integration* Technology
+== Fuse *Integration* Platform
 
 [#block,width="700px",left="0px",top="0px"]
 image::fuse-technology.png[]
+
+// ************** Technology ********
+[#fuse-platform-camel-cxf]
+== Routing, Mediation & Services
+
+[#block,width="700px",left="0px",top="0px"]
+image::fuse-platform-camel-cxf.png[]
 
 // ************** Camel ************
 [#apache-camel]
@@ -144,7 +149,7 @@ image::fuse-technology.png[]
 
 [.noredheader]
 |===
-image:eip/book.jpg[width="50%"] | image:camel/camel-box-small.png[width="50%"]
+| image:eip/book.jpg[width="50%"] | image:camel/camel-box-small.png[width="50%"]
 |===
 
 // ************** Camel ************
@@ -157,7 +162,7 @@ image:eip/book.jpg[width="50%"] | image:camel/camel-box-small.png[width="50%"]
 
 [.noredheader]
 |===
-image:eip/patterns.png[width="100%"] | image:eip/patterns-3.jpg[width="100%"]
+| image:eip/patterns.png[width="100%"] | image:eip/patterns-3.jpg[width="100%"]
 |===
 
 // ************** Camel ************
@@ -416,6 +421,13 @@ a| * Routes/*Endpoints* registered {icon-arrow-right} CamelContext
 * Policy driven
 * Container *Agnostic*
 
+// ************** Technology ********
+[#fuse-platform-karaf]
+== Multi-Technology
+
+[#block,width="700px",left="0px",top="0px"]
+image::fuse-platform-karaf.png[]
+
 // ************** Karaf ************
 [#apache-karaf]
 == Apache Karaf image:integration/karaf-logo.png[float="right"]
@@ -468,19 +480,34 @@ image:karaf/karaf1.png[]
 image:karaf/karaf2.png[]
 
 // ************** Karaf ************
-[#karaf-hotdeploy]
-== Integration container
+// [#karaf-hotdeploy]
+// == Integration container
+//
+// * New routes can be *hot deployed*
+// * Like also "Beans/POJO, Web Services, ..."
+//
+// image:karaf/karaf3.png[]
 
-* New routes can be *hot deployed*
-* Like also "Beans/POJO, Web Services, ..."
+// ************ demo *************
+[#jboss-fuse-demo]
+== JBoss Fuse in action
 
-image:karaf/karaf3.png[]
+* *DEMO*
+** Design an Apache contentBased Route
+** Deploy the OSGI Bundle top of JBoss Fuse
 
 // ************** integration everywhere ************
 [#cloud]
-== (Cloud) Deployment
+== Deployment & Containers Mngt
 
 image:karaf/karaf4.png[]
+
+// ************** Technology ********
+[#fuse-platform-fabric8]
+== Fabric your Integration project
+
+[#block,width="700px",left="0px",top="0px"]
+image::fuse-platform-fabric8.png[]
 
 // ************** Fabric ************
 [#fabric8]
@@ -635,6 +662,13 @@ image::fuse/elasticsearch.png[80%,80%]
 == Insight Camel
 
 image::fuse/es-camel.png[80%,80%]
+
+// ************** Technology ********
+[#fuse-platform-console]
+== Fabric your Integration project
+
+[#block,width="700px",left="0px",top="0px"]
+image::fuse-platform-hawtio.png[]
 
 // ************ Hawtio *************
 [#hawtio]
@@ -882,6 +916,14 @@ image:fuse/hawtio-3.png[]
 image:fuse/hawtio-4.png[width="65%",height="65%"]
 image:fuse/hawtio-5.png[width="65%",height="65%"]
 
+// ************ demo *************
+[#jboss-fabric-demo]
+== Fabric in action
+
+* *DEMO*
+** Design an Apache CXF REST Service
+** Run it as a Service in a Fabric Container
+
 // ************** Product ************
 [#product-fuse]
 == *Integration & Mediation* Platform
@@ -990,7 +1032,8 @@ image::{revealjs_cover_image}[]
 [#future]
 == Future
 
-** JBoss Fuse - 7
+* What is the future about the *Inetgration Platform*
+** {icon-arrow-right} JBoss Fuse - 7
 ** AMQ - 7
 
 {icon-arrow-right} for Bare Metal / Hypervisor machines
@@ -1164,21 +1207,15 @@ image::fis.png[]
 
 image::fis-tool.png[]
 
-// ************ demo *************
-[#jboss-fuse-demo]
-== JBoss Fuse in action
+// ************ fis demo *************
+[#fis-demo]
+== JBoss Fuse in the cloud in action
 
 * *DEMO*
-** Design REST Service using *Camel*
-** Deploy on *JBoss Fuse* using a *profile*
-** Create container & expose REST Service using *Fabric*
-** Define *Security Policy* for the endpoint {icon-arrow-right}
-*** *Authenticate* the user (*BASIC* - static realm)
-*** *Authorize* using *Oauth2*
+** Design & Deploy a SpringBoot Apache Camel Project
+** Exposing a REST endpoint and connected to a MySQL DB
 
-Rest DSL in Action : https://github.com/FuseByExample/rest-dsl-in-action
-
-Camel & Mobile : https://github.com/cmoulliard/feedhenry-camel
+Microservice in Action : https://github.com/FuseByExample/microservice-in-action
 
 // *********************************
 [#questions]
